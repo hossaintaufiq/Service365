@@ -19,12 +19,19 @@ const ServiceGigList = () => {
     );
   }
 
-  // Filter providers by category and (optionally) service
+  // Filter: providers whose category matches and whose services array includes the selected service
   const gigs = providers.filter(p => {
-    if (!p.services) return false;
-    const matchesCategory = p.services.toLowerCase().includes(category.title.toLowerCase());
+    if (!p.category || !p.services) return false;
+    const matchesCategory = p.category === categoryId;
     if (serviceName) {
-      return matchesCategory && p.services.toLowerCase().includes(decodeURIComponent(serviceName).toLowerCase());
+      // Ensure p.services is always an array
+      const servicesArr = Array.isArray(p.services)
+        ? p.services
+        : String(p.services).split(',').map(s => s.trim());
+      return (
+        matchesCategory &&
+        servicesArr.some(s => s.toLowerCase() === decodeURIComponent(serviceName).toLowerCase())
+      );
     }
     return matchesCategory;
   });
@@ -63,7 +70,7 @@ const ServiceGigList = () => {
                 <div className="flex-1">
                   <h3 className="text-xl font-bold text-blue-700">{provider.name}</h3>
                   <div className="text-gray-600 mb-1">{provider.businessName}</div>
-                  <div className="text-gray-500 mb-2">{provider.services}</div>
+                  <div className="text-gray-500 mb-2">{Array.isArray(provider.services) ? provider.services.join(', ') : provider.services}</div>
                   <div className="text-sm text-gray-500 mb-2">Experience: {provider.experience} years</div>
                   <div className="inline-block mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 font-semibold transition">
                     View Details
