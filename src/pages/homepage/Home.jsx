@@ -9,15 +9,15 @@ const categories = servicesData.categories.slice(0, 6) // Show first 6 as tabs
 
 const SectionCards = ({ title, data, viewAll }) => (
   <section className="mb-10">
-    <div className="flex justify-between items-center mb-4">
-      <h3 className="text-xl font-bold text-gray-800">{title}</h3>
-      {viewAll && <a href="#" className="text-pink-600 font-medium text-sm hover:underline">View All</a>}
+    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-2 sm:gap-0">
+      <h3 className="text-lg sm:text-xl font-bold text-gray-800">{title}</h3>
+      {viewAll && <a href="#" className="text-pink-600 font-medium text-xs sm:text-sm hover:underline">View All</a>}
     </div>
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-6">
+    <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6">
       {data.map((item, idx) => (
-        <div key={item.name + idx} className="bg-white rounded-xl shadow hover:shadow-lg transition-shadow flex flex-col items-center p-4 min-h-[180px] border border-gray-100">
-          <img src={item.image} alt={item.name} className="w-24 h-24 object-cover rounded-lg mb-3 border border-gray-200" />
-          <span className="text-center text-gray-800 font-medium text-base mt-1">{item.name}</span>
+        <div key={item.name + idx} className="bg-white rounded-xl shadow hover:shadow-lg transition-shadow flex flex-col items-center p-3 sm:p-4 min-h-[140px] sm:min-h-[180px] border border-gray-100">
+          <img src={item.image} alt={item.name} className="w-full h-28 object-cover rounded-lg mb-2 sm:mb-3" />
+          <span className="text-center text-gray-800 font-medium text-xs sm:text-base mt-1">{item.name}</span>
         </div>
       ))}
     </div>
@@ -28,26 +28,26 @@ const Home = () => {
   return (
     <div className="bg-gray-50">
       {/* Hero Banner */}
-      <section className="relative h-[420px] flex items-center justify-center bg-cover bg-center" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80)' }}>
+      <section className="relative h-[320px] md:h-[420px] flex items-center justify-center bg-cover bg-center" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80)' }}>
         <div className="absolute inset-0 bg-black opacity-40"></div>
-        <div className="relative z-10 w-full max-w-3xl mx-auto text-center text-white">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 drop-shadow">Your Personal Assistant</h1>
-          <p className="text-lg md:text-xl mb-6 drop-shadow">One-stop solution for your services. Order any service, anytime.</p>
-          <div className="flex flex-col md:flex-row items-center justify-center gap-2">
-            <select className="rounded-l-md px-4 py-2 text-gray-700 focus:outline-none min-w-[120px]">
+        <div className="relative z-10 w-full max-w-3xl mx-auto text-center text-white px-2 sm:px-0">
+          <h1 className="text-lg xs:text-xl sm:text-2xl md:text-4xl font-bold mb-2 sm:mb-4 drop-shadow break-words">Your Personal Assistant</h1>
+          <p className="text-xs xs:text-sm sm:text-base md:text-lg mb-4 sm:mb-6 drop-shadow break-words">One-stop solution for your services. Order any service, anytime.</p>
+          <div className="flex flex-col md:flex-row items-center justify-center gap-2 w-full max-w-lg mx-auto">
+            <select className="rounded-l-md px-4 py-2 text-gray-700 focus:outline-none min-w-[100px] sm:min-w-[120px] w-full md:w-auto text-xs sm:text-base">
               <option>Gulshan</option>
               <option>Banani</option>
               <option>Dhanmondi</option>
             </select>
-            <input type="text" className="flex-1 px-4 py-2 rounded-r-md md:rounded-none md:rounded-r-md text-gray-700 focus:outline-none min-w-[200px]" placeholder="Find your service here e.g. AC, Car, Facial..." />
-            <button className="bg-pink-600 text-white px-6 py-2 rounded-md mt-2 md:mt-0 md:ml-2 font-semibold min-w-[100px]">Search</button>
+            <input type="text" className="flex-1 px-4 py-2 rounded-r-md md:rounded-none md:rounded-r-md text-gray-700 focus:outline-none min-w-[120px] sm:min-w-[200px] w-full md:w-auto text-xs sm:text-base" placeholder="Find your service here e.g. AC, Car, Facial..." />
+            <button className="bg-pink-600 text-white px-4 sm:px-6 py-2 rounded-md mt-2 md:mt-0 md:ml-2 font-semibold min-w-[80px] sm:min-w-[100px] w-full md:w-auto text-xs sm:text-base">Search</button>
           </div>
           {/* Category Tabs */}
-          <div className="mt-8 flex justify-center gap-6 overflow-x-auto pb-2">
+          <div className="mt-6 flex justify-center gap-3 sm:gap-6 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
             {categories.map((cat) => (
-              <div key={cat.id} className="flex flex-col items-center min-w-[100px]">
-                <img src={cat.image} alt={cat.title} className="w-14 h-14 object-cover rounded-full border-2 border-pink-500 mb-1 bg-white" />
-                <span className="text-sm text-white font-medium whitespace-nowrap drop-shadow">{cat.title}</span>
+              <div key={cat.id} className="flex flex-col items-center min-w-[60px] sm:min-w-[100px]">
+                <img src={cat.image} alt={cat.title} className="w-8 h-8 sm:w-14 sm:h-14 object-cover rounded-full border-2 border-pink-500 mb-1 bg-white" />
+                <span className="text-[10px] xs:text-xs sm:text-sm text-white font-medium whitespace-nowrap drop-shadow truncate max-w-[60px] sm:max-w-[100px]">{cat.title}</span>
               </div>
             ))}
           </div>
@@ -70,7 +70,7 @@ const Home = () => {
       <section className="bg-green-50 py-12 mt-12 rounded-xl">
         <div className="max-w-7xl mx-auto px-4">
           <h3 className="text-2xl font-bold mb-6 text-gray-800">Because we care about your safety..</h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+          <div className="grid grid-cols-2 xs:grid-cols-4 gap-6 mb-8">
             <div className="flex flex-col items-center">
               <span className="text-4xl mb-2">😷</span>
               <span className="font-medium text-gray-700">Ensuring Masks</span>
@@ -155,7 +155,7 @@ const Home = () => {
         <div className="max-w-2xl mx-auto px-4 text-center">
           <h3 className="text-2xl font-bold mb-4 text-gray-800">Any Service, Any Time, Anywhere.</h3>
           <p className="mb-6 text-gray-600">Give us your mobile number. You'll get an SMS with the app download link.</p>
-          <div className="flex flex-col sm:flex-row gap-2 justify-center mb-6">
+          <div className="flex flex-col xs:flex-row gap-2 justify-center mb-6">
             <input type="text" placeholder="Type your mobile number" className="flex-1 px-4 py-2 rounded-md border border-gray-300 focus:outline-none" />
             <button className="bg-pink-600 text-white px-6 py-2 rounded-md font-semibold">Get the app</button>
           </div>

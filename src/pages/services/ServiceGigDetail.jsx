@@ -20,6 +20,17 @@ const ServiceGigDetail = () => {
   const [reviews, setReviews] = useState(getReviews(providerId));
   const [review, setReview] = useState('');
   const [name, setName] = useState('');
+  const [booking, setBooking] = useState({
+    userName: '',
+    userPhone: '',
+    userEmail: '',
+    service: provider.services && Array.isArray(provider.services) && provider.services.length > 0 ? provider.services[0] : '',
+    date: '',
+    time: '',
+    notes: '',
+  });
+  const [bookingSuccess, setBookingSuccess] = useState(false);
+  const [bookingError, setBookingError] = useState('');
 
   if (!provider) {
     return (
@@ -46,6 +57,40 @@ const ServiceGigDetail = () => {
     localStorage.setItem(`reviews_${providerId}`, JSON.stringify(newReviews));
     setReview('');
     setName('');
+  };
+
+  const handleBookingChange = (e) => {
+    const { name, value } = e.target;
+    setBooking(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleBookingSubmit = (e) => {
+    e.preventDefault();
+    setBookingError('');
+    // Validation
+    if (!booking.userName.trim() || !booking.userPhone.trim() || !booking.userEmail.trim() || !booking.date || !booking.time || !booking.service) {
+      setBookingError('Please fill in all required fields.');
+      return;
+    }
+    const bookingDateTime = new Date(`${booking.date}T${booking.time}`);
+    if (isNaN(bookingDateTime.getTime()) || bookingDateTime < new Date()) {
+      setBookingError('Please select a valid future date and time.');
+      return;
+    }
+    // Save booking to localStorage (demo)
+    const bookings = JSON.parse(localStorage.getItem(`bookings_${providerId}`) || '[]');
+    bookings.push({ ...booking, dateTime: bookingDateTime.toISOString(), created: new Date().toISOString() });
+    localStorage.setItem(`bookings_${providerId}`, JSON.stringify(bookings));
+    setBookingSuccess(true);
+    setBooking({
+      userName: '',
+      userPhone: '',
+      userEmail: '',
+      service: provider.services && Array.isArray(provider.services) && provider.services.length > 0 ? provider.services[0] : '',
+      date: '',
+      time: '',
+      notes: '',
+    });
   };
 
   return (
@@ -148,7 +193,7 @@ const ServiceGigDetail = () => {
                 </div>
               ))}
             </div>
-            <form onSubmit={handleReviewSubmit} className="bg-white border rounded p-4 flex flex-col gap-2">
+            <form onSubmit={handleReviewSubmit} className="bg-white border rounded p-4 flex flex-col gap-2 mb-12">
               <input
                 type="text"
                 placeholder="Your Name"
@@ -167,6 +212,61 @@ const ServiceGigDetail = () => {
               />
               <button type="submit" className="self-end bg-blue-600 text-white px-6 py-2 rounded font-semibold hover:bg-blue-700 transition mt-2">Submit Review</button>
             </form>
+
+            {/* Booking Section */}
+            <div className="mt-12">
+              <h3 className="text-xl font-bold text-blue-700 mb-4">Book This Provider</h3>
+              {bookingSuccess && (
+                <div className="mb-4 p-3 bg-green-100 text-green-700 rounded">Booking successful! The provider will contact you soon.</div>
+              )}
+              {bookingError && (
+                <div className="mb-4 p-3 bg-red-100 text-red-700 rounded">{bookingError}</div>
+              )}
+              <form onSubmit={handleBookingSubmit} className="bg-white border rounded p-4 flex flex-col gap-3">
+                <div className="flex gap-4">
+                  <div className="flex-1">
+                    <label className="block mb-1 font-medium">Your Name</label>
+                    <input name="userName" value={booking.userName} onChange={handleBookingChange} required className="w-full px-3 py-2 border rounded focus:outline-none" />
+                  </div>
+                  <div className="flex-1">
+                    <label className="block mb-1 font-medium">Phone</label>
+                    <input name="userPhone" value={booking.userPhone} onChange={handleBookingChange} required className="w-full px-3 py-2 border rounded focus:outline-none" />
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <div className="flex-1">
+                    <label className="block mb-1 font-medium">Email</label>
+                    <input name="userEmail" type="email" value={booking.userEmail} onChange={handleBookingChange} required className="w-full px-3 py-2 border rounded focus:outline-none" />
+                  </div>
+                  <div className="flex-1">
+                    <label className="block mb-1 font-medium">Service</label>
+                    <select name="service" value={booking.service} onChange={handleBookingChange} required className="w-full px-3 py-2 border rounded focus:outline-none">
+                      <option value="">Select a service</option>
+                      {Array.isArray(provider.services) ? provider.services.map(s => (
+                        <option key={s} value={s}>{s}</option>
+                      )) : (
+                        <option value={provider.services}>{provider.services}</option>
+                      )}
+                    </select>
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <div className="flex-1">
+                    <label className="block mb-1 font-medium">Preferred Date</label>
+                    <input name="date" type="date" value={booking.date} onChange={handleBookingChange} required className="w-full px-3 py-2 border rounded focus:outline-none" />
+                  </div>
+                  <div className="flex-1">
+                    <label className="block mb-1 font-medium">Preferred Time</label>
+                    <input name="time" type="time" value={booking.time} onChange={handleBookingChange} required className="w-full px-3 py-2 border rounded focus:outline-none" />
+                  </div>
+                </div>
+                <div>
+                  <label className="block mb-1 font-medium">Additional Notes (optional)</label>
+                  <textarea name="notes" value={booking.notes} onChange={handleBookingChange} className="w-full px-3 py-2 border rounded focus:outline-none" rows={2} />
+                </div>
+                <button type="submit" className="self-end bg-blue-600 text-white px-6 py-2 rounded font-semibold hover:bg-blue-700 transition mt-2">Book Now</button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
