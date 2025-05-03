@@ -1,0 +1,268 @@
+{
+  "categories": [
+    {
+      "id": "ac-repair",
+      "title": "AC Repair Services",
+      "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
+      "services": [
+        { "name": "AC Repair", "image": "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" },
+        { "name": "AC Servicing", "image": "https://images.unsplash.com/photo-1597764699510-5c0b0c8c7e4b?auto=format&fit=crop&w=400&q=80" },
+        { "name": "AC Installation", "image": "https://placehold.co/80x80?text=AC+Install" },
+        { "name": "AC Uninstall", "image": "https://placehold.co/80x80?text=AC+Uninstall" },
+        { "name": "AC Controller Problems", "image": "https://images.unsplash.com/photo-1581093588401-22b8d33c1e66?auto=format&fit=crop&w=400&q=80" }
+      ]
+    },
+    {
+      "id": "appliance-repair",
+      "title": "Appliance Repair",
+      "image": "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80",
+      "services": [
+        { "name": "Refrigerator Repair", "image": "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80" },
+        { "name": "Geyser Repair", "image": "https://images.unsplash.com/photo-1581092334391-7c31c1b1b1b1?auto=format&fit=crop&w=400&q=80" },
+        { "name": "Washing Machine Repair", "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80" },
+        { "name": "Microwave Repair", "image": "https://placehold.co/80x80?text=Microwave" },
+        { "name": "Water Purifier Repair", "image": "https://placehold.co/80x80?text=Purifier" }
+      ]
+    },
+    {
+      "id": "cleaning",
+      "title": "Cleaning Solution",
+      "image": "https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?auto=format&fit=crop&w=400&q=80",
+      "services": [
+        { "name": "Deep Cleaning", "image": "https://placehold.co/80x80?text=Deep+Cleaning" },
+        { "name": "Sofa Cleaning", "image": "https://placehold.co/80x80?text=Sofa+Cleaning" },
+        { "name": "Carpet Cleaning", "image": "https://placehold.co/80x80?text=Carpet+Cleaning" },
+        { "name": "Water Tank Cleaning", "image": "https://placehold.co/80x80?text=Tank+Cleaning" }
+      ]
+    },
+    {
+      "id": "beauty",
+      "title": "Beauty & Wellness",
+      "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80",
+      "services": [
+        { "name": "Salon at Home", "image": "https://placehold.co/80x80?text=Salon+Home" },
+        { "name": "Spa & Massage", "image": "https://placehold.co/80x80?text=Spa+Massage" },
+        { "name": "Makeup Artist", "image": "https://placehold.co/80x80?text=Makeup" }
+      ]
+    },
+    {
+      "id": "shifting",
+      "title": "Shifting",
+      "image": "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80",
+      "services": [
+        { "name": "House Shifting Services", "image": "https://placehold.co/80x80?text=House+Shifting" },
+        { "name": "Office Shifting Services", "image": "https://placehold.co/80x80?text=Office+Shifting" },
+        { "name": "Packing & Unpacking", "image": "https://placehold.co/80x80?text=Packing" }
+      ]
+    },
+    {
+      "id": "sheba-shop",
+      "title": "Sheba Shop",
+      "image": "https://images.unsplash.com/photo-1515168833906-d2a3b82b3027?auto=format&fit=crop&w=400&q=80",
+      "services": [
+        { "name": "Grocery Delivery", "image": "https://placehold.co/80x80?text=Grocery" },
+        { "name": "Water Delivery", "image": "https://placehold.co/80x80?text=Water" },
+        { "name": "Medicine Delivery", "image": "https://placehold.co/80x80?text=Medicine" }
+      ]
+    },
+    {
+      "id": "mens-care",
+      "title": "Men's Care & Salon",
+      "image": "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80",
+      "services": [
+        { "name": "Haircut", "image": null },
+        { "name": "Beard Trim", "image": null },
+        { "name": "Facial", "image": null }
+      ]
+    },
+    {
+      "id": "health-care",
+      "title": "Health & Care",
+      "image": "https://images.unsplash.com/photo-1519494080410-f9aa8f52f1e1?auto=format&fit=crop&w=400&q=80",
+      "services": [
+        { "name": "Nursing Service", "image": null },
+        { "name": "Lab Test", "image": null },
+        { "name": "Doctor Consultation", "image": null }
+      ]
+    },
+    {
+      "id": "electronics-repair",
+      "title": "Electronics & Gadgets Repair",
+      "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=400&q=80",
+      "services": [
+        { "name": "Mobile Repair", "image": null },
+        { "name": "Laptop Repair", "image": null },
+        { "name": "Tablet Repair", "image": null }
+      ]
+    },
+    {
+      "id": "electric-plumbing",
+      "title": "Electric & Plumbing",
+      "image": "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80",
+      "services": [
+        { "name": "Plumbing Service", "image": null },
+        { "name": "Electrical Service", "image": null }
+      ]
+    },
+    {
+      "id": "pest-control",
+      "title": "Pest Control",
+      "image": "https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?auto=format&fit=crop&w=400&q=80",
+      "services": [
+        { "name": "Mosquito Control", "image": null },
+        { "name": "Rodent Control", "image": null }
+      ]
+    },
+    {
+      "id": "driver-service",
+      "title": "Driver Service",
+      "image": "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80",
+      "services": [
+        { "name": "On-demand Driver", "image": null }
+      ]
+    },
+    {
+      "id": "car-care",
+      "title": "Car Care Services",
+      "image": "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80",
+      "services": [
+        { "name": "Engine Care", "image": null },
+        { "name": "Upgrade & Repair", "image": null }
+      ]
+    },
+    {
+      "id": "car-rental",
+      "title": "Car Rental",
+      "image": "https://images.unsplash.com/photo-1519494080410-f9aa8f52f1e1?auto=format&fit=crop&w=400&q=80",
+      "services": [
+        { "name": "Inside City", "image": null },
+        { "name": "Outside City", "image": null }
+      ]
+    },
+    {
+      "id": "painting-renovation",
+      "title": "Painting & Renovation",
+      "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
+      "services": [
+        { "name": "House Painting", "image": null },
+        { "name": "Carpentry & Woodwork", "image": null },
+        { "name": "Interior/Exterior Renovation", "image": null }
+      ]
+    },
+    {
+      "id": "best-deal",
+      "title": "Best Deal",
+      "image": "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80",
+      "services": [
+        { "name": "Special Discounted Services", "image": null }
+      ]
+    },
+    {
+      "id": "emergency",
+      "title": "Emergency Services",
+      "image": "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80",
+      "services": [
+        { "name": "24/7 AC Repair Service", "image": null }
+      ]
+    }
+  ],
+  "forYourHome": [
+    {
+      "name": "Plumbing & Sanitary Services",
+      "image": "https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      "name": "House Shifting Services",
+      "image": "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      "name": "Home Cleaning",
+      "image": "https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      "name": "Gas Stove/Burner Services",
+      "image": "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80"
+    }
+  ],
+  "recommended": [
+    {
+      "name": "AC Servicing",
+      "image": "https://images.unsplash.com/photo-1597764699510-5c0b0c8c7e4b?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      "name": "Home Cleaning",
+      "image": "https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      "name": "On Demand Driver",
+      "image": "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      "name": "Salon Care",
+      "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80"
+    }
+  ],
+  "trending": [
+    {
+      "name": "AC Servicing",
+      "image": "https://images.unsplash.com/photo-1597764699510-5c0b0c8c7e4b?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      "name": "Home Cleaning",
+      "image": "https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      "name": "Salon Care",
+      "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80"
+    }
+  ],
+  "testimonials": [
+    {
+      "id": 1,
+      "name": "Sarah Johnson",
+      "role": "Homeowner",
+      "image": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3",
+      "text": "Amazing service! The team was professional and thorough. Will definitely use again."
+    },
+    {
+      "id": 2,
+      "name": "Michael Chen",
+      "role": "Business Owner",
+      "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3",
+      "text": "Reliable and efficient service. They completed the job on time and within budget."
+    },
+    {
+      "id": 3,
+      "name": "Emily Rodriguez",
+      "role": "Property Manager",
+      "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3",
+      "text": "Best service provider in the area. Highly recommended for all home services."
+    }
+  ],
+  "features": [
+    {
+      "id": 1,
+      "title": "Professional Service",
+      "description": "Our team consists of trained and certified professionals",
+      "icon": "👨‍🔧"
+    },
+    {
+      "id": 2,
+      "title": "24/7 Support",
+      "description": "Round the clock customer support for all your needs",
+      "icon": "⏰"
+    },
+    {
+      "id": 3,
+      "title": "Affordable Rates",
+      "description": "Competitive pricing with no hidden charges",
+      "icon": "💰"
+    },
+    {
+      "id": 4,
+      "title": "Quality Guarantee",
+      "description": "100% satisfaction guaranteed on all our services",
+      "icon": "✅"
+    }
+  ]
+} 
