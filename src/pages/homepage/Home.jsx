@@ -69,31 +69,33 @@ const Home = () => {
       {/* Why Choose Us */}
       <section className="bg-green-50 py-12 mt-12 rounded-xl">
         <div className="max-w-7xl mx-auto px-4">
-          <h3 className="text-2xl font-bold mb-6 text-gray-800">Because we care about your safety..</h3>
-          <div className="grid grid-cols-2 xs:grid-cols-4 gap-6 mb-8">
-            <div className="flex flex-col items-center">
+          <h3 className="text-2xl font-bold mb-6 text-gray-800 text-center">Because We Care About Your Safety : </h3>
+            
+          <div className="flex flex-col md:flex-row gap-10 mb-10 justify-center">
+            <div className="flex flex-col justify-center items-center">
               <span className="text-4xl mb-2">😷</span>
               <span className="font-medium text-gray-700">Ensuring Masks</span>
             </div>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col justify-center items-center">
               <span className="text-4xl mb-2">⏰</span>
               <span className="font-medium text-gray-700">24/7 Support</span>
             </div>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col justify-center items-center">
               <span className="text-4xl mb-2">🧴</span>
-              <span className="font-medium text-gray-700">Sanitizing Hands & Equipment</span>
+              <span className="font-medium text-gray-700">Proper Sanitization</span>
             </div>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col justify-center items-center">
               <span className="text-4xl mb-2">🧤</span>
               <span className="font-medium text-gray-700">Ensuring Gloves</span>
             </div>
+            </div>
           </div>
-          <div className="flex justify-center gap-4 flex-wrap">
+          <div className="flex flex-col md:flex-row justify-center gap-10">
             <img src="https://images.unsplash.com/photo-1588776814546-ec7e5b1c7b7b?auto=format&fit=crop&w=400&q=80" alt="Safety" className="w-40 h-32 object-cover rounded-lg" />
             <img src="https://images.unsplash.com/photo-1581093588401-22b8d33c1e66?auto=format&fit=crop&w=400&q=80" alt="Safety" className="w-40 h-32 object-cover rounded-lg" />
             <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" alt="Safety" className="w-40 h-32 object-cover rounded-lg" />
           </div>
-        </div>
+         
       </section>
 
       {/* Stats */}
