@@ -27,44 +27,38 @@ const Profile = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-white shadow">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-6">
-            <div className="flex items-center space-x-4">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
-                <span className="text-2xl font-bold text-blue-600">
-                  {currentUser?.displayName?.charAt(0) || 'U'}
-                </span>
-              </div>
-              <div>
-                <h1 className="text-2xl font-bold text-gray-900">{currentUser?.displayName}</h1>
-                <p className="text-gray-600">{currentUser?.email}</p>
-              </div>
-            </div>
-            <button
-              onClick={handleLogout}
-              className="px-4 py-2 text-sm font-medium text-red-600 hover:text-red-700 hover:bg-red-50 rounded-md"
-            >
-              Logout
-            </button>
+      <div className="bg-white rounded-xl shadow-md p-4 sm:p-6 flex flex-col md:flex-row items-center justify-between mt-4 mb-8 max-w-2xl md:max-w-4xl mx-auto w-full">
+        <div className="flex items-center gap-3 sm:gap-4 w-full">
+          <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-400 to-pink-400 rounded-full flex items-center justify-center text-xl sm:text-2xl font-bold text-white">
+            {currentUser?.displayName?.charAt(0) || 'U'}
+          </div>
+          <div className="flex flex-col">
+            <span className="text-lg sm:text-xl font-bold text-gray-900">{currentUser?.displayName}</span>
+            <span className="text-gray-500 text-xs sm:text-base">{currentUser?.email}</span>
           </div>
         </div>
+        <button
+          onClick={handleLogout}
+          className="mt-4 md:mt-0 px-4 py-2 text-xs sm:text-sm font-medium text-white bg-red-500 hover:bg-red-600 rounded-md transition w-full md:w-auto"
+        >
+          Logout
+        </button>
       </div>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 py-6 sm:py-8 w-full">
         {/* Tabs */}
-        <div className="border-b border-gray-200 mb-8">
-          <nav className="-mb-px flex space-x-8">
+        <div className="border-b border-gray-200 mb-6 sm:mb-8 overflow-x-auto">
+          <nav className="-mb-px flex space-x-4 sm:space-x-8">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`${
-                  activeTab === tab.id
+                className={`$
+                  {activeTab === tab.id
                     ? 'border-blue-500 text-blue-600'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
+                  } whitespace-nowrap py-3 sm:py-4 px-1 border-b-2 font-medium text-xs sm:text-sm`}
               >
                 {tab.label}
               </button>
@@ -73,42 +67,42 @@ const Profile = () => {
         </div>
 
         {/* Dashboard Content */}
-        <div className="bg-white rounded-lg shadow">
+        <div className="bg-white rounded-lg shadow overflow-x-auto">
           {activeTab === 'overview' && (
-            <div className="p-6">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="p-4 sm:p-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
                 {/* Stats Cards */}
-                <div className="bg-blue-50 rounded-lg p-6">
-                  <h3 className="text-lg font-medium text-blue-900">Active Bookings</h3>
-                  <p className="text-3xl font-bold text-blue-600 mt-2">2</p>
+                <div className="bg-blue-50 rounded-lg p-4 sm:p-6">
+                  <h3 className="text-base sm:text-lg font-medium text-blue-900">Active Bookings</h3>
+                  <p className="text-2xl sm:text-3xl font-bold text-blue-600 mt-2">2</p>
                 </div>
-                <div className="bg-green-50 rounded-lg p-6">
-                  <h3 className="text-lg font-medium text-green-900">Completed Services</h3>
-                  <p className="text-3xl font-bold text-green-600 mt-2">8</p>
+                <div className="bg-green-50 rounded-lg p-4 sm:p-6">
+                  <h3 className="text-base sm:text-lg font-medium text-green-900">Completed Services</h3>
+                  <p className="text-2xl sm:text-3xl font-bold text-green-600 mt-2">8</p>
                 </div>
-                <div className="bg-purple-50 rounded-lg p-6">
-                  <h3 className="text-lg font-medium text-purple-900">Saved Providers</h3>
-                  <p className="text-3xl font-bold text-purple-600 mt-2">5</p>
+                <div className="bg-purple-50 rounded-lg p-4 sm:p-6">
+                  <h3 className="text-base sm:text-lg font-medium text-purple-900">Saved Providers</h3>
+                  <p className="text-2xl sm:text-3xl font-bold text-purple-600 mt-2">5</p>
                 </div>
               </div>
 
               {/* Recent Activity */}
-              <div className="mt-8">
-                <h2 className="text-lg font-medium text-gray-900 mb-4">Recent Activity</h2>
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div className="mt-6 sm:mt-8">
+                <h2 className="text-base sm:text-lg font-medium text-gray-900 mb-3 sm:mb-4">Recent Activity</h2>
+                <div className="space-y-3 sm:space-y-4">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between p-3 sm:p-4 bg-gray-50 rounded-lg">
                     <div>
                       <p className="font-medium">Booking Confirmed</p>
-                      <p className="text-sm text-gray-500">AC Repair Service</p>
+                      <p className="text-xs sm:text-sm text-gray-500">AC Repair Service</p>
                     </div>
-                    <span className="text-sm text-gray-500">2 hours ago</span>
+                    <span className="text-xs sm:text-sm text-gray-500 mt-2 sm:mt-0">2 hours ago</span>
                   </div>
-                  <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between p-3 sm:p-4 bg-gray-50 rounded-lg">
                     <div>
                       <p className="font-medium">Service Completed</p>
-                      <p className="text-sm text-gray-500">Plumbing Service</p>
+                      <p className="text-xs sm:text-sm text-gray-500">Plumbing Service</p>
                     </div>
-                    <span className="text-sm text-gray-500">1 day ago</span>
+                    <span className="text-xs sm:text-sm text-gray-500 mt-2 sm:mt-0">1 day ago</span>
                   </div>
                 </div>
               </div>
