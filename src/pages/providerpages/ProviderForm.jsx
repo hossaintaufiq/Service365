@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { db, realtimeDb } from '../../firebaseConfig';
+import { collection, addDoc } from 'firebase/firestore';
+import { ref, set } from 'firebase/database';
 import servicesData from '../../data/services.json';
 
 const initialState = {
@@ -57,6 +60,8 @@ const ProviderForm = () => {
   const [form, setForm] = useState(initialState);
   const [step, setStep] = useState(0);
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     const { name, value, files, type, options } = e.target;
@@ -78,14 +83,48 @@ const ProviderForm = () => {
     e.preventDefault();
     setStep((s) => Math.max(s - 1, 0));
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const providers = JSON.parse(localStorage.getItem('demo_providers') || '[]');
-    providers.push(form);
-    localStorage.setItem('demo_providers', JSON.stringify(providers));
-    setSubmitted(true);
-    setForm(initialState);
-    setStep(0);
+    setLoading(true);
+    setError(null);
+
+    try {
+      const providerData = {
+        ...form,
+        createdAt: new Date().toISOString(),
+        status: 'pending',
+      };
+
+      // Debug: Log the data you are about to send
+      console.log('Submitting provider data:', providerData);
+
+      const docRef = await addDoc(collection(db, 'providers'), providerData);
+      console.log('Provider added to Firestore with ID:', docRef.id);
+
+      // Add to Realtime Database with the same ID
+      const providerRef = ref(realtimeDb, 'providers/' + docRef.id);
+      await set(providerRef, {
+        ...providerData,
+        id: docRef.id
+      });
+      console.log('Provider added to Realtime Database');
+
+      // Reset form and show success message
+      setForm(initialState);
+      setStep(0);
+      setSubmitted(true);
+      setLoading(false);
+
+      // Optional: Show success message for 5 seconds
+      setTimeout(() => {
+        setSubmitted(false);
+      }, 5000);
+
+    } catch (error) {
+      console.error('Error adding provider:', error);
+      setError('Failed to submit provider information. Please try again.');
+      setLoading(false);
+    }
   };
 
   // Get services for selected category
@@ -106,8 +145,16 @@ const ProviderForm = () => {
           ))}
         </div>
         <div className="text-center font-semibold mb-6 text-blue-700">{steps[step]}</div>
+        {/* Status Messages */}
+        {error && (
+          <div className="mb-4 p-3 bg-red-100 text-red-700 rounded">
+            {error}
+          </div>
+        )}
         {submitted && (
-          <div className="mb-4 p-3 bg-green-100 text-green-700 rounded">Provider data saved (demo)!</div>
+          <div className="mb-4 p-3 bg-green-100 text-green-700 rounded">
+            Provider registration successful! We will review your application shortly.
+          </div>
         )}
         <form onSubmit={step === steps.length - 1 ? handleSubmit : handleNext} className="space-y-4">
           {/* Step 1 */}
@@ -350,13 +397,32 @@ const ProviderForm = () => {
           )}
           <div className="flex justify-between mt-8">
             {step > 0 && (
-              <button onClick={handleBack} className="bg-gray-200 text-gray-700 px-6 py-2 rounded font-semibold hover:bg-gray-300 transition">Back</button>
+              <button 
+                type="button"
+                onClick={handleBack} 
+                className="bg-gray-200 text-gray-700 px-6 py-2 rounded font-semibold hover:bg-gray-300 transition"
+                disabled={loading}
+              >
+                Back
+              </button>
             )}
             {step < steps.length - 1 && (
-              <button type="submit" className="bg-blue-600 text-white px-6 py-2 rounded font-semibold hover:bg-blue-700 transition ml-auto">Next</button>
+              <button 
+                type="submit" 
+                className="bg-blue-600 text-white px-6 py-2 rounded font-semibold hover:bg-blue-700 transition ml-auto"
+                disabled={loading}
+              >
+                Next
+              </button>
             )}
             {step === steps.length - 1 && (
-              <button type="submit" className="bg-blue-600 text-white px-6 py-2 rounded font-semibold hover:bg-blue-700 transition ml-auto">Submit</button>
+              <button 
+                type="submit" 
+                className="bg-blue-600 text-white px-6 py-2 rounded font-semibold hover:bg-blue-700 transition ml-auto"
+                disabled={loading}
+              >
+                {loading ? 'Submitting...' : 'Submit'}
+              </button>
             )}
           </div>
         </form>

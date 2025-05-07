@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import providers from '../../data/providers.json';
+import { useParams } from 'react-router-dom';
+import { db } from '../../firebaseConfig';
+import { collection, getDocs } from 'firebase/firestore';
 
 const provider = providers[0]; // For demo, show the first provider
 
@@ -11,7 +14,29 @@ const InfoRow = ({ label, value }) => (
 );
 
 const ProviderGig = () => {
+  const { serviceName } = useParams();
+  const [providers, setProviders] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProviders = async () => {
+      const querySnapshot = await getDocs(collection(db, 'providers'));
+      const providerList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setProviders(providerList);
+      setLoading(false);
+    };
+    fetchProviders();
+  }, []);
+
   if (!provider) return <div className="p-8 text-center">Provider not found.</div>;
+  const filteredProviders = providers.filter(
+    p =>
+      p.category === categoryId &&
+      Array.isArray(p.services) &&
+      p.services.some(
+        s => s.toLowerCase() === decodeURIComponent(serviceName).toLowerCase()
+      )
+  );
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4">
       <div className="max-w-3xl w-full bg-white p-8 rounded-xl shadow-lg">
