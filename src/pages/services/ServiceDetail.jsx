@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { db } from '../../firebaseConfig';
 import { doc, getDoc } from 'firebase/firestore';
+import BookingModal from '../../components/BookingModal';
 
 const ServiceDetail = () => {
   const { serviceId } = useParams();
@@ -9,6 +10,13 @@ const ServiceDetail = () => {
   const [service, setService] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showBookingModal, setShowBookingModal] = useState(false);
+  const [bookingData, setBookingData] = useState({
+    date: '',
+    time: '',
+    message: ''
+  });
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchServiceDetails = async () => {
@@ -34,6 +42,14 @@ const ServiceDetail = () => {
 
     fetchServiceDetails();
   }, [serviceId]);
+
+  const handleBookingSubmit = (e) => {
+    e.preventDefault();
+    // Here you would typically handle the booking submission
+    console.log('Booking submitted:', bookingData);
+    setShowBookingModal(false);
+    // Show success message or redirect
+  };
 
   if (loading) {
     return (
@@ -168,14 +184,14 @@ const ServiceDetail = () => {
           </div>
         </div>
 
-        {/* Action Buttons */}
-        <div className="mt-8 flex flex-col sm:flex-row gap-4">
+        {/* Book Now Button */}
+        <div className="mt-8">
           <button
-            onClick={() => window.location.href = `mailto:${service.email}`}
-            className="flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center"
+            onClick={() => setIsBookingModalOpen(true)}
+            className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center text-lg font-semibold"
           >
             <svg
-              className="w-5 h-5 mr-2"
+              className="w-6 h-6 mr-2"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -184,32 +200,19 @@ const ServiceDetail = () => {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
-                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
               />
             </svg>
-            Contact Provider
-          </button>
-          <button
-            onClick={() => window.location.href = `tel:${service.phone}`}
-            className="flex-1 bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center"
-          >
-            <svg
-              className="w-5 h-5 mr-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-              />
-            </svg>
-            Call Provider
+            Book Now
           </button>
         </div>
       </div>
+
+      <BookingModal
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+        service={service}
+      />
     </div>
   );
 };
