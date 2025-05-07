@@ -189,7 +189,7 @@ const ServiceList = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {searchResults.map(service => (
           <Link 
-            to={`/gig/${service.id}`} 
+            to={`/services/${service.id}`} 
             key={service.id}
             className="block bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
           >

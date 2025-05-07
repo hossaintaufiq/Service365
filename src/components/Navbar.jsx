@@ -26,9 +26,8 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
             <Link to="/" className="text-gray-700 hover:text-blue-600 text-base">Home</Link>
             <Link to="/services" className="text-gray-700 hover:text-blue-600 text-base">Services</Link>
-            <Link to="/category" className="text-gray-700 hover:text-blue-600 text-base">All Categories</Link>
             <Link to="/providerform" className="text-gray-700 hover:text-blue-600 text-base">Become a Provider</Link>
-            <Link to="/providergig" className="text-gray-700 hover:text-blue-600 text-base">Provider Gig</Link>
+            {/* <Link to="/providergig" className="text-gray-700 hover:text-blue-600 text-base">Provider Gig</Link> */}
             <Link to="/login" className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 text-base">
               Login
             </Link>
@@ -39,9 +38,9 @@ const Navbar = () => {
           <div className="md:hidden flex flex-col space-y-2 py-2">
             <Link to="/" className="text-gray-700 hover:text-blue-600 text-base px-2 py-2" onClick={() => setMenuOpen(false)}>Home</Link>
             <Link to="/services" className="text-gray-700 hover:text-blue-600 text-base px-2 py-2" onClick={() => setMenuOpen(false)}>Services</Link>
-            <Link to="/category" className="text-gray-700 hover:text-blue-600 text-base px-2 py-2" onClick={() => setMenuOpen(false)}>All Categories</Link>
+            {/* <Link to="/category" className="text-gray-700 hover:text-blue-600 text-base px-2 py-2" onClick={() => setMenuOpen(false)}>All Categories</Link> */}
             <Link to="/providerform" className="text-gray-700 hover:text-blue-600 text-base px-2 py-2" onClick={() => setMenuOpen(false)}>Become a Provider</Link>
-            <Link to="/providergig" className="text-gray-700 hover:text-blue-600 text-base px-2 py-2" onClick={() => setMenuOpen(false)}>Provider Gig</Link>
+            {/* <Link to="/providergig" className="text-gray-700 hover:text-blue-600 text-base px-2 py-2" onClick={() => setMenuOpen(false)}>Provider Gig</Link> */}
             <Link to="/login" className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 text-base mx-2" onClick={() => setMenuOpen(false)}>
               Login
             </Link>

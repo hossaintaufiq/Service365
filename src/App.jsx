@@ -6,6 +6,7 @@ import Category from './pages/services/Category'
 import ServiceGigList from './pages/services/ServiceGigList'
 import ServiceGigDetail from './pages/services/ServiceGigDetail'
 import ServiceList from './pages/services/ServiceList'
+import ServiceDetail from './pages/services/ServiceDetail'
 import Login from './pages/auth/Login'
 import Footer from './components/Footer'
 import ProviderForm from './pages/providerpages/ProviderForm'
@@ -33,13 +34,14 @@ function App() {
             {/* Public Routes */}
             <Route path="/" element={<Home />} />
             <Route path="/services" element={<ServiceList />} />
-            <Route path="/category" element={<Category />} />
-            <Route path="/category/:categoryId" element={<ServiceGigList />} />
-            <Route path="/category/:categoryId/:serviceName" element={<ServiceGigList />} />
+            <Route path="/services/:serviceId" element={<ServiceDetail />} />
+            {/* <Route path="/category" element={<Category />} /> */}
+            {/* <Route path="/category/:categoryId" element={<ServiceGigList />} /> */}
+            {/* <Route path="/category/:categoryId/:serviceName" element={<ServiceGigList />} /> */}
             <Route path="/gig/:providerId" element={<ServiceGigDetail />} />
             <Route path="/login" element={<Login />} />
             <Route path="/providerform" element={<ProviderForm />} />
-            <Route path="/providergig" element={<ProviderGig />} />
+            {/* <Route path="/providergig" element={<ProviderGig />} /> */}
 
             {/* Protected Routes */}
             <Route
