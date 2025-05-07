@@ -33,12 +33,21 @@ const BookingModal = ({ isOpen, onClose, service }) => {
   if (!currentUser) {
     return (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-        <div className="bg-white rounded-lg p-8 max-w-md w-full">
-          <h2 className="text-2xl font-bold mb-4">Login Required</h2>
-          <p className="text-gray-600 mb-6">
+        <div className="bg-white rounded-lg p-4 sm:p-8 w-full max-w-md mx-2 sm:mx-0">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-xl sm:text-2xl font-bold">Login Required</h2>
+            <button
+              onClick={onClose}
+              className="text-gray-400 hover:text-gray-700 text-2xl font-bold focus:outline-none"
+              aria-label="Close"
+            >
+              &times;
+            </button>
+          </div>
+          <p className="text-gray-600 mb-6 text-sm sm:text-base">
             Please login or create an account to book this service.
           </p>
-          <div className="flex space-x-4">
+          <div className="flex flex-col sm:flex-row gap-3 sm:space-x-4">
             <button
               onClick={() => navigate('/login')}
               className="flex-1 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
@@ -61,9 +70,18 @@ const BookingModal = ({ isOpen, onClose, service }) => {
   if (userData?.role === 'provider') {
     return (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-        <div className="bg-white rounded-lg p-8 max-w-md w-full">
-          <h2 className="text-2xl font-bold mb-4">Provider Account</h2>
-          <p className="text-gray-600 mb-6">
+        <div className="bg-white rounded-lg p-4 sm:p-8 w-full max-w-md mx-2 sm:mx-0">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-xl sm:text-2xl font-bold">Provider Account</h2>
+            <button
+              onClick={onClose}
+              className="text-gray-400 hover:text-gray-700 text-2xl font-bold focus:outline-none"
+              aria-label="Close"
+            >
+              &times;
+            </button>
+          </div>
+          <p className="text-gray-600 mb-6 text-sm sm:text-base">
             Service providers cannot book services. Please use a regular user account to make bookings.
           </p>
           <button
@@ -80,9 +98,9 @@ const BookingModal = ({ isOpen, onClose, service }) => {
   // Booking form for logged-in users
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg p-8 max-w-md w-full">
+      <div className="bg-white rounded-lg p-4 sm:p-8 w-full max-w-md mx-2 sm:mx-0 overflow-y-auto max-h-[90vh]">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold">Book Service</h2>
+          <h2 className="text-xl sm:text-2xl font-bold">Book Service</h2>
           <button
             onClick={onClose}
             className="text-gray-500 hover:text-gray-700"
