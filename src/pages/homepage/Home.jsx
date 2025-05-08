@@ -87,31 +87,63 @@ const Home = () => {
 
   return (
     <div className="bg-gradient-to-b from-[#eaf6fb] to-[#cbe7f7] min-h-screen">
-      {/* Hero Banner with Image Slider */}
-      <section className="relative w-full min-h-[420px] md:min-h-[520px] flex flex-col justify-center items-center bg-gradient-to-br from-[#0a3a5c] to-[#16507a] text-white overflow-hidden pb-24">
-        {/* Headline */}
-        <div className="flex flex-col items-center justify-center text-center z-10 mt-8">
+      {/* Hero Banner with Background Slideshow */}
+      <section className="relative w-full min-h-[420px] md:min-h-[550px] flex items-center justify-center overflow-hidden">
+        {/* Slideshow as background */}
+        <div className="absolute inset-0 w-full h-full z-0">
+          <img
+            src={heroImages[current]}
+            alt="Hero Slide"
+            className="w-full h-full object-cover transition-all duration-700"
+          />
+          {/* Overlay for readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/20 z-10" />
+          {/* Navigation Arrows */}
+          <button
+            onClick={() => setCurrent((current - 1 + heroImages.length) % heroImages.length)}
+            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-70 hover:bg-opacity-100 text-[#233a7a] rounded-full p-2 shadow transition z-20"
+            aria-label="Previous"
+          >
+            <svg width="28" height="28" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+          </button>
+          <button
+            onClick={() => setCurrent((current + 1) % heroImages.length)}
+            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-70 hover:bg-opacity-100 text-[#233a7a] rounded-full p-2 shadow transition z-20"
+            aria-label="Next"
+          >
+            <svg width="28" height="28" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+          </button>
+          {/* Navigation Dots */}
+          <div className="flex justify-center gap-2 absolute bottom-6 left-1/2 -translate-x-1/2 z-20">
+            {heroImages.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrent(idx)}
+                className={`w-3 h-3 rounded-full ${current === idx ? 'bg-pink-600' : 'bg-gray-300'} transition`}
+                aria-label={`Go to slide ${idx + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+        {/* Centered Text and Buttons */}
+        <div className="relative z-20 flex flex-col items-center justify-center text-center w-full px-4">
           <span className="uppercase tracking-widest text-xs md:text-sm font-bold text-[#16507a] bg-white/90 px-4 py-1 rounded mb-4 shadow-sm">Let Your Home Shine</span>
-          <h1 className="text-2xl md:text-4xl font-extrabold text-center text-white mb-2 leading-tight font-sans min-h-[2.5em]">
+          <h1 className="text-2xl md:text-4xl font-extrabold text-white mb-2 leading-tight font-sans min-h-[2.5em]">
             {typed}
             <span className="inline-block w-2 h-6 align-middle bg-white ml-1" style={{borderRadius:'2px', opacity: 0.8, animation: 'none'}}></span>
           </h1>
-          <p className="text-base md:text-lg text-center mb-6 z-10 font-normal text-white/90 max-w-2xl mx-auto leading-relaxed animate-fadeinup">
-          Discover affordable home services from <span className='font-semibold text-white'>verified professionals</span>, or find your next <span className='font-semibold text-white'>job opportunity</span>! Book cleaning, repairs, beauty, and more—connect with top experts or start your career today. <span className='font-semibold text-white'>Fast, reliable, and available anywhere in Bangladesh.</span>
-        </p>
-          <div className="mt-8" />
+          <p className="text-base md:text-lg mb-6 z-10 font-normal text-white/90 max-w-2xl mx-auto leading-relaxed animate-fadeinup">
+            Discover affordable home services from <span className='font-semibold text-white'>verified professionals</span>, or find your next <span className='font-semibold text-white'>job opportunity</span>! Book cleaning, repairs, beauty, and more—connect with top experts or start your career today. <span className='font-semibold text-white'>Fast, reliable, and available anywhere in Bangladesh.</span>
+          </p>
+          <div className="flex flex-wrap gap-4 mb-4 z-10 justify-center">
+            <a href="/services" className="bg-pink-600 hover:bg-pink-700 text-white px-6 py-3 rounded-full font-semibold shadow transition">Book Services</a>
+            <a href="/signup" className="bg-blue-100 hover:bg-blue-200 text-[#233a7a] px-6 py-3 rounded-full font-semibold shadow transition">Register Your Business</a>
+          </div>
         </div>
-        {/* CTA Buttons */}
-        <div className="flex flex-wrap gap-4 mb-16 z-10 justify-center">
-          <a href="/services" className="bg-pink-600 hover:bg-pink-700 text-white px-6 py-3 rounded-full font-semibold shadow transition">Book Services</a>
-          <a href="/signup" className="bg-blue-100 hover:bg-blue-200 text-[#233a7a] px-6 py-3 rounded-full font-semibold shadow transition">Register Your Business</a>
-        </div>
-        {/* Curved white section at the bottom */}
-        <svg className="absolute bottom-0 left-0 w-full" viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="#fff" d="M0,80 C480,160 960,0 1440,80 L1440,120 L0,120 Z"/></svg>
       </section>
 
       {/* Step Section - Horizontal Row Layout */}
-      <section className="bg-white w-full py-20 px-4 border-none border-t-0" style={{borderTop: 'none'}}>
+      <section className="bg-white w-full py-20 px-4" style={{borderTop: '0px none !important'}}>
         <div className="max-w-5xl mx-auto text-center mb-12">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">We're With You Every Step of The Way</h2>
           <p className="text-gray-500 max-w-2xl mx-auto">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem.</p>
@@ -202,7 +234,7 @@ const Home = () => {
               <p className="text-gray-600">Get help setting up and marketing your business for maximum reach and success.</p>
             </div>
           </div>
-          <button className="bg-pink-600 hover:bg-pink-700 text-white font-bold px-8 py-3 rounded-md text-lg shadow transition">Book a service</button>
+          <a href="/services" className="inline-block bg-pink-600 hover:bg-pink-700 text-white font-bold px-8 py-3 rounded-md text-lg shadow transition">Book a service</a>
         </div>
       </section>
 
@@ -213,7 +245,7 @@ const Home = () => {
           <div className="flex-1">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#233a7a]">Start your own franchise business<br />with Fantastic Services</h2>
             <p className="text-gray-600 mb-6 max-w-xl">Develop your own successful business by investing in a proven franchise model that takes all risks out and provides full support. A business of your own but not on your own.</p>
-            <button className="bg-pink-600 hover:bg-pink-700 text-white font-bold px-6 py-3 rounded-md text-lg shadow transition">Become your own boss</button>
+            <a href="/signup" className="inline-block bg-pink-600 hover:bg-pink-700 text-white font-bold px-6 py-3 rounded-md text-lg shadow transition">Become your own boss</a>
           </div>
           {/* Right: Image Slider with border effect */}
           <div className="flex-1 flex flex-col items-center justify-center">
@@ -259,50 +291,50 @@ const Home = () => {
       </section>
 
       {/* Testimonial Section */}
-      <section className="bg-white py-16">
+      <section className="bg-white py-12 sm:py-16">
         <div className="max-w-5xl mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 text-[#233a7a]">What clients are saying...</h2>
-          <div className="flex flex-col items-center mb-10">
-            <div className="flex items-center gap-2 mb-2">
-              <span className="font-semibold text-gray-700">Excellent</span>
-              <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Trustpilot_Logo_2018.svg" alt="Trustpilot" className="h-6" />
-              <span className="bg-[#00b67a] text-white font-bold px-2 rounded ml-1">★★★★★</span>
-              <span className="text-gray-600 ml-2">over 40,000 reviews on</span>
-              <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Trustpilot_Logo_2018.svg" alt="Trustpilot" className="h-5 ml-1" />
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-6 text-[#233a7a]">What clients are saying...</h2>
+          <div className="flex flex-col items-center mb-8 sm:mb-10">
+            <div className="flex flex-wrap items-center gap-2 mb-2 justify-center">
+              <span className="font-semibold text-gray-700 text-sm sm:text-base">Excellent</span>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Trustpilot_Logo_2018.svg" alt="Trustpilot" className="h-5 sm:h-6" />
+              <span className="bg-[#00b67a] text-white font-bold px-2 rounded ml-1 text-xs sm:text-base">★★★★★</span>
+              <span className="text-gray-600 ml-2 text-xs sm:text-base">over 40,000 reviews on</span>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Trustpilot_Logo_2018.svg" alt="Trustpilot" className="h-4 sm:h-5 ml-1" />
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
             {/* Testimonial 1 */}
-            <div className="flex flex-col items-center text-center">
-              <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Andrew Thorburn" className="w-20 h-20 rounded-full object-cover mb-4 border-4 border-white shadow" />
-              <h3 className="font-bold text-lg mb-2 text-gray-900">Amazing service, <br />above and beyond</h3>
-              <p className="text-gray-600 mb-4">I used them for an end of tenancy clean, and they did a fantastic job. It turned out to be bigger than expected, but they remained professional, and bent over backwards to make sure I got what I wante ...</p>
-              <a href="#" className="text-[#009fe3] font-bold mb-2">Read more</a>
-              <div className="font-bold text-gray-800 mt-2">Andrew Thorburn</div>
+            <div className="flex flex-col items-center text-center p-4 sm:p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow">
+              <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Andrew Thorburn" className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover mb-4 border-4 border-white shadow" />
+              <h3 className="font-bold text-base sm:text-lg mb-2 text-gray-900">Amazing service, <br className='hidden sm:block'/>above and beyond</h3>
+              <p className="text-gray-600 mb-4 text-xs sm:text-sm md:text-base">I used them for an end of tenancy clean, and they did a fantastic job. It turned out to be bigger than expected, but they remained professional, and bent over backwards to make sure I got what I wante ...</p>
+              <a href="#" className="text-[#009fe3] font-bold mb-2 text-xs sm:text-sm">Read more</a>
+              <div className="font-bold text-gray-800 mt-2 text-xs sm:text-sm">Andrew Thorburn</div>
               <div className="flex justify-center mt-2">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/62/Trustpilot_ratings_5star.png" alt="5 stars" className="h-6" />
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/62/Trustpilot_ratings_5star.png" alt="5 stars" className="h-5 sm:h-6" />
               </div>
             </div>
             {/* Testimonial 2 */}
-            <div className="flex flex-col items-center text-center">
-              <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Jasmine Pengelly" className="w-20 h-20 rounded-full object-cover mb-4 border-4 border-white shadow" />
-              <h3 className="font-bold text-lg mb-2 text-gray-900">Far exceeded my<br />expectations</h3>
-              <p className="text-gray-600 mb-4">Far exceeded my expectations - my gardeners were professional, friendly and found time to do my front garden as well as my back! I could not be more impressed with how they handled the job. I will cer ...</p>
-              <a href="#" className="text-[#009fe3] font-bold mb-2">Read more</a>
-              <div className="font-bold text-gray-800 mt-2">Jasmine Pengelly</div>
+            <div className="flex flex-col items-center text-center p-4 sm:p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow">
+              <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Jasmine Pengelly" className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover mb-4 border-4 border-white shadow" />
+              <h3 className="font-bold text-base sm:text-lg mb-2 text-gray-900">Far exceeded my<br className='hidden sm:block'/>expectations</h3>
+              <p className="text-gray-600 mb-4 text-xs sm:text-sm md:text-base">Far exceeded my expectations - my gardeners were professional, friendly and found time to do my front garden as well as my back! I could not be more impressed with how they handled the job. I will cer ...</p>
+              <a href="#" className="text-[#009fe3] font-bold mb-2 text-xs sm:text-sm">Read more</a>
+              <div className="font-bold text-gray-800 mt-2 text-xs sm:text-sm">Jasmine Pengelly</div>
               <div className="flex justify-center mt-2">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/62/Trustpilot_ratings_5star.png" alt="5 stars" className="h-6" />
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/62/Trustpilot_ratings_5star.png" alt="5 stars" className="h-5 sm:h-6" />
               </div>
             </div>
             {/* Testimonial 3 */}
-            <div className="flex flex-col items-center text-center">
-              <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="Diana Farragher" className="w-20 h-20 rounded-full object-cover mb-4 border-4 border-white shadow" />
-              <h3 className="font-bold text-lg mb-2 text-gray-900">Service with a smile</h3>
-              <p className="text-gray-600 mb-4">Punctuality Phone call On arrival Cheerful welcome Very helpful and they did a very thorough job My carpets are cleaner than I thought possible so job exceeded expectations Thank You</p>
-              <a href="#" className="text-[#009fe3] font-bold mb-2">Read more</a>
-              <div className="font-bold text-gray-800 mt-2">Diana Farragher</div>
+            <div className="flex flex-col items-center text-center p-4 sm:p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow">
+              <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="Diana Farragher" className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover mb-4 border-4 border-white shadow" />
+              <h3 className="font-bold text-base sm:text-lg mb-2 text-gray-900">Service with a smile</h3>
+              <p className="text-gray-600 mb-4 text-xs sm:text-sm md:text-base">Punctuality Phone call On arrival Cheerful welcome Very helpful and they did a very thorough job My carpets are cleaner than I thought possible so job exceeded expectations Thank You</p>
+              <a href="#" className="text-[#009fe3] font-bold mb-2 text-xs sm:text-sm">Read more</a>
+              <div className="font-bold text-gray-800 mt-2 text-xs sm:text-sm">Diana Farragher</div>
               <div className="flex justify-center mt-2">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/62/Trustpilot_ratings_5star.png" alt="5 stars" className="h-6" />
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/62/Trustpilot_ratings_5star.png" alt="5 stars" className="h-5 sm:h-6" />
               </div>
             </div>
           </div>

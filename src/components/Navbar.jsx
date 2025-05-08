@@ -71,12 +71,13 @@ const Navbar = () => {
           <div className="flex items-center sm:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-pink-400 hover:bg-blue-100 bg-opacity-10 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+              className="inline-flex items-center justify-center p-2 rounded-md text-black hover:text-pink-400 hover:bg-blue-100 bg-opacity-10 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
             >
               <span className="sr-only">Open main menu</span>
               {!isMenuOpen ? (
                 <svg
                   className="block h-6 w-6"
+                  style={{ color: 'black' }}
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -92,6 +93,7 @@ const Navbar = () => {
               ) : (
                 <svg
                   className="block h-6 w-6"
+                  style={{ color: 'black' }}
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -117,12 +119,14 @@ const Navbar = () => {
             <Link
               to="/"
               className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-semibold hover:text-pink-500 hover:bg-blue-50 transition-all duration-200"
+              onClick={() => setIsMenuOpen(false)}
             >
               Home
             </Link>
             <Link
               to="/services"
               className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-semibold hover:text-pink-500 hover:bg-blue-50 transition-all duration-200"
+              onClick={() => setIsMenuOpen(false)}
             >
               Services
             </Link>
@@ -130,6 +134,7 @@ const Navbar = () => {
               <Link
                 to="/providerform"
                 className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-semibold hover:text-pink-500 hover:bg-blue-50 transition-all duration-200"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Register Your Business
               </Link>
@@ -140,6 +145,7 @@ const Navbar = () => {
               <Link
                 to="/profile"
                 className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-semibold hover:text-blue-500 hover:bg-blue-50 transition-all duration-200"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Profile
               </Link>
@@ -148,12 +154,14 @@ const Navbar = () => {
                 <Link
                   to="/login"
                   className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-semibold hover:text-blue-500 hover:bg-blue-50 transition-all duration-200"
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   Login
                 </Link>
                 <Link
                   to="/signup"
                   className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-bold bg-gradient-to-r from-pink-500 to-blue-500 text-white hover:from-blue-600 hover:to-pink-600 hover:text-white hover:bg-blue-50 transition-all duration-200"
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   Sign Up
                 </Link>
