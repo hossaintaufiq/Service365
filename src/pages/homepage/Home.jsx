@@ -47,6 +47,29 @@ const Home = () => {
   const [franchiseCurrent, setFranchiseCurrent] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState(0);
 
+  // Typewriter effect for hero headline
+  const typewriterText = "Bangladesh's #1 Home Services & Job Platform";
+  const [typed, setTyped] = useState("");
+  useEffect(() => {
+    let i = 0;
+    let timeout;
+    function type() {
+      setTyped(typewriterText.slice(0, i));
+      if (i < typewriterText.length) {
+        i++;
+        timeout = setTimeout(type, 220);
+      } else {
+        timeout = setTimeout(() => {
+          setTyped("");
+          i = 0;
+          setTimeout(type, 4500);
+        }, 4500);
+      }
+    }
+    type();
+    return () => clearTimeout(timeout);
+  }, []);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % heroImages.length)
@@ -69,7 +92,10 @@ const Home = () => {
         {/* Headline */}
         <div className="flex flex-col items-center justify-center text-center z-10 mt-8">
           <span className="uppercase tracking-widest text-xs md:text-sm font-bold text-[#16507a] bg-white/90 px-4 py-1 rounded mb-4 shadow-sm">Let Your Home Shine</span>
-          <h1 className="text-2xl md:text-4xl font-extrabold text-center text-white mb-2 leading-tight font-sans">Bangladesh's #1 Home Services & Job Platform</h1>
+          <h1 className="text-2xl md:text-4xl font-extrabold text-center text-white mb-2 leading-tight font-sans min-h-[2.5em]">
+            {typed}
+            <span className="inline-block w-2 h-6 align-middle bg-white ml-1" style={{borderRadius:'2px', opacity: 0.8, animation: 'none'}}></span>
+          </h1>
           <p className="text-base md:text-lg text-center mb-6 z-10 font-normal text-white/90 max-w-2xl mx-auto leading-relaxed animate-fadeinup">
           Discover affordable home services from <span className='font-semibold text-white'>verified professionals</span>, or find your next <span className='font-semibold text-white'>job opportunity</span>! Book cleaning, repairs, beauty, and more—connect with top experts or start your career today. <span className='font-semibold text-white'>Fast, reliable, and available anywhere in Bangladesh.</span>
         </p>
@@ -85,7 +111,7 @@ const Home = () => {
       </section>
 
       {/* Step Section - Horizontal Row Layout */}
-      <section className="bg-white w-full py-20 px-4">
+      <section className="bg-white w-full py-20 px-4 border-none border-t-0" style={{borderTop: 'none'}}>
         <div className="max-w-5xl mx-auto text-center mb-12">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">We're With You Every Step of The Way</h2>
           <p className="text-gray-500 max-w-2xl mx-auto">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem.</p>

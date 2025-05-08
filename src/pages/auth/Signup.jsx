@@ -93,21 +93,12 @@ const Signup = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Create your account
-          </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
-            Already have an account?{' '}
-            <Link to="/login" className="font-medium text-blue-600 hover:text-blue-500">
-              Sign in
-            </Link>
-          </p>
-        </div>
-
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#eaf6fb] to-[#f0f6fc] py-6 px-2 sm:px-4">
+      <div className="w-full max-w-md mx-auto bg-white rounded-2xl shadow-2xl p-4 sm:p-6 md:p-10 flex flex-col justify-center relative">
+        <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-24 h-1.5 rounded-full bg-gradient-to-r from-pink-500 to-blue-500 mb-6"></div>
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0a3a5c] mb-2 text-center">Create your account</h2>
+        <p className="text-gray-500 text-center mb-6 text-base sm:text-lg">Already have an account?{' '}<Link to="/login" className="font-bold text-blue-600 hover:underline">Sign in</Link></p>
+        <form className="space-y-5 sm:space-y-6" onSubmit={handleSubmit}>
           {error && (
             <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded relative" role="alert">
               <span className="block sm:inline">{error}</span>
@@ -124,7 +115,7 @@ const Signup = () => {
                 name="name"
                 type="text"
                 required
-                className="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-200 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm shadow-sm"
                 placeholder="Full Name"
                 value={formData.name}
                 onChange={handleChange}
@@ -141,7 +132,7 @@ const Signup = () => {
                 type="email"
                 autoComplete="email"
                 required
-                className="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-200 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm shadow-sm"
                 placeholder="Email address"
                 value={formData.email}
                 onChange={handleChange}
@@ -158,7 +149,7 @@ const Signup = () => {
                 type="password"
                 autoComplete="new-password"
                 required
-                className="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-200 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm shadow-sm"
                 placeholder="Password"
                 value={formData.password}
                 onChange={handleChange}
@@ -175,7 +166,7 @@ const Signup = () => {
                 type="password"
                 autoComplete="new-password"
                 required
-                className="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-200 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm shadow-sm"
                 placeholder="Confirm Password"
                 value={formData.confirmPassword}
                 onChange={handleChange}
@@ -183,11 +174,13 @@ const Signup = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-semibold text-[#0a3a5c] mb-2">
                 I want to register as a:
               </label>
-              <div className="flex space-x-4">
-                <label className="inline-flex items-center">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 bg-[#f0f6fc] rounded-xl p-3 sm:p-4 border border-blue-100 shadow-sm">
+                <label className={`flex-1 flex items-center justify-center cursor-pointer rounded-lg transition-all duration-150 px-3 py-2
+                  ${formData.role === 'user' ? 'bg-white border-2 border-blue-500 shadow' : 'hover:bg-blue-50 border border-transparent'}`}
+                >
                   <input
                     type="radio"
                     name="role"
@@ -196,9 +189,11 @@ const Signup = () => {
                     onChange={handleChange}
                     className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
                   />
-                  <span className="ml-2 text-sm text-gray-700">User</span>
+                  <span className="ml-2 text-base font-medium text-[#0a3a5c]">User</span>
                 </label>
-                <label className="inline-flex items-center">
+                <label className={`flex-1 flex items-center justify-center cursor-pointer rounded-lg transition-all duration-150 px-3 py-2
+                  ${formData.role === 'provider' ? 'bg-white border-2 border-blue-500 shadow' : 'hover:bg-blue-50 border border-transparent'}`}
+                >
                   <input
                     type="radio"
                     name="role"
@@ -207,7 +202,7 @@ const Signup = () => {
                     onChange={handleChange}
                     className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
                   />
-                  <span className="ml-2 text-sm text-gray-700">Service Provider</span>
+                  <span className="ml-2 text-base font-medium text-[#0a3a5c]">Service Provider</span>
                 </label>
               </div>
             </div>
@@ -217,8 +212,8 @@ const Signup = () => {
             <button
               type="submit"
               disabled={loading}
-              className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white ${
-                loading ? 'bg-blue-400' : 'bg-blue-600 hover:bg-blue-700'
+              className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-lg font-semibold rounded-md text-white ${
+                loading ? 'bg-blue-400' : 'bg-gradient-to-r from-pink-500 to-blue-600 hover:from-blue-700 hover:to-pink-600 shadow-lg'
               } focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500`}
             >
               {loading ? (
