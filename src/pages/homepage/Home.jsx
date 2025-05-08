@@ -67,16 +67,18 @@ const Home = () => {
       {/* Hero Banner with Image Slider */}
       <section className="relative w-full min-h-[420px] md:min-h-[520px] flex flex-col justify-center items-center bg-gradient-to-br from-[#0a3a5c] to-[#16507a] text-white overflow-hidden pb-24">
         {/* Headline */}
-        <h1 className="text-2xl md:text-4xl font-bold text-center mb-2 z-10 text-white font-sans">
-          Your Trusted Home Services & Job Finder in Bangladesh
-        </h1>
-        <p className="text-base md:text-lg text-center mb-6 z-10 font-normal text-white/90 max-w-2xl mx-auto leading-relaxed">
+        <div className="flex flex-col items-center justify-center text-center z-10 mt-8">
+          <span className="uppercase tracking-widest text-xs md:text-sm font-bold text-[#16507a] bg-white/90 px-4 py-1 rounded mb-4 shadow-sm">Let Your Home Shine</span>
+          <h1 className="text-2xl md:text-4xl font-extrabold text-center text-white mb-2 leading-tight font-sans">Bangladesh's #1 Home Services & Job Platform</h1>
+          <p className="text-base md:text-lg text-center mb-6 z-10 font-normal text-white/90 max-w-2xl mx-auto leading-relaxed animate-fadeinup">
           Discover affordable home services from <span className='font-semibold text-white'>verified professionals</span>, or find your next <span className='font-semibold text-white'>job opportunity</span>! Book cleaning, repairs, beauty, and more—connect with top experts or start your career today. <span className='font-semibold text-white'>Fast, reliable, and available anywhere in Bangladesh.</span>
         </p>
+          <div className="mt-8" />
+        </div>
         {/* CTA Buttons */}
-        <div className="flex gap-4 mb-8 z-10">
-          <a href="tel:2351332511" className="bg-[#233a7a] hover:bg-[#1a2d5c] text-white px-6 py-3 rounded-full font-semibold shadow transition flex items-center gap-2"><span>📞</span> Call: (235) 133-2511</a>
-          <a href="#quote" className="bg-[#2ee6b6] hover:bg-[#1fd1a3] text-[#0a3a5c] px-6 py-3 rounded-full font-semibold shadow transition">Get an Online Quote</a>
+        <div className="flex flex-wrap gap-4 mb-16 z-10 justify-center">
+          <a href="/services" className="bg-pink-600 hover:bg-pink-700 text-white px-6 py-3 rounded-full font-semibold shadow transition">Book Services</a>
+          <a href="/signup" className="bg-blue-100 hover:bg-blue-200 text-[#233a7a] px-6 py-3 rounded-full font-semibold shadow transition">Register Your Business</a>
         </div>
         {/* Curved white section at the bottom */}
         <svg className="absolute bottom-0 left-0 w-full" viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="#fff" d="M0,80 C480,160 960,0 1440,80 L1440,120 L0,120 Z"/></svg>
