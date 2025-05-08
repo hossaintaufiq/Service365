@@ -7,7 +7,7 @@ const Navbar = () => {
   const { currentUser, userData } = useAuth();
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-30 bg-gradient-to-r from-blue-700/80 via-blue-500/70 to-white/60 text-white shadow-xl backdrop-blur-md transition-colors duration-300 font-sans">
+    <nav className="fixed top-0 left-0 w-full z-30 bg-white text-black border-b-4 border-[#0a3a5c] shadow transition-colors duration-300 font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           <div className="flex-shrink-0 flex items-center">

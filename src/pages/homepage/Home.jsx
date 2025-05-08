@@ -14,6 +14,12 @@ const heroImages = [
   '/public/Homepage-Image/Plumbing-Contractors.png'
 ]
 
+const franchiseImages = [
+  '/Homepage-Image/Makeup.jpg',
+  '/Homepage-Image/nursing.jpg',
+  '/Homepage-Image/Plumbing-Contractors.png',
+];
+
 // Custom scrollbar-hide utility
 const scrollbarHide = 'scrollbar-hide';
 
@@ -38,6 +44,8 @@ const Home = () => {
   const [current, setCurrent] = useState(0)
   const desktopCatRef = useRef(null)
   const mobileCatRef = useRef(null)
+  const [franchiseCurrent, setFranchiseCurrent] = useState(0);
+  const [selectedCategory, setSelectedCategory] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -57,198 +65,253 @@ const Home = () => {
   return (
     <div className="bg-gradient-to-b from-[#eaf6fb] to-[#cbe7f7] min-h-screen">
       {/* Hero Banner with Image Slider */}
-      <section
-        className="relative h-[320px] md:h-[520px] flex items-center justify-center bg-cover bg-center transition-all duration-700"
-        style={{ backgroundImage: `url(${heroImages[current]})` }}
-      >
-        <div className="absolute inset-0 bg-black opacity-40 transition-all duration-700"></div>
-        <div className="relative z-10 w-full max-w-3xl mx-auto text-center text-white px-2 sm:px-0">
-          <h1 className="text-lg xs:text-xl sm:text-2xl md:text-4xl font-bold mb-2 sm:mb-4 drop-shadow break-words">Your Personal Assistant</h1>
-          <p className="text-xs xs:text-sm sm:text-base md:text-lg mb-4 sm:mb-6 drop-shadow break-words">One-stop solution for your services. Order any service, anytime.</p>
-          <div className="flex flex-col md:flex-row items-center justify-center gap-2 w-full max-w-lg mx-auto">
-            <select className="rounded-l-md px-4 py-2 text-gray-700 focus:outline-none min-w-[100px] sm:min-w-[120px] w-full md:w-auto text-xs sm:text-base">
-              <option>Gulshan</option>
-              <option>Banani</option>
-              <option>Dhanmondi</option>
-            </select>
-            <input type="text" className="flex-1 px-4 py-2 rounded-r-md md:rounded-none md:rounded-r-md text-gray-700 focus:outline-none min-w-[120px] sm:min-w-[200px] w-full md:w-auto text-xs sm:text-base" placeholder="Find your service here e.g. AC, Car, Facial..." />
-            <button className="bg-pink-600 text-white px-4 sm:px-6 py-2 rounded-md mt-2 md:mt-0 md:ml-2 font-semibold min-w-[80px] sm:min-w-[100px] w-full md:w-auto text-xs sm:text-base">Search</button>
-          </div>
+      <section className="relative w-full min-h-[420px] md:min-h-[520px] flex flex-col justify-center items-center bg-gradient-to-br from-[#0a3a5c] to-[#16507a] text-white overflow-hidden pb-24">
+        {/* Headline */}
+        <h1 className="text-2xl md:text-4xl font-bold text-center mb-2 z-10 text-white font-sans">
+          Your Trusted Home Services & Job Finder in Bangladesh
+        </h1>
+        <p className="text-base md:text-lg text-center mb-6 z-10 font-normal text-white/90 max-w-2xl mx-auto leading-relaxed">
+          Discover affordable home services from <span className='font-semibold text-white'>verified professionals</span>, or find your next <span className='font-semibold text-white'>job opportunity</span>! Book cleaning, repairs, beauty, and more—connect with top experts or start your career today. <span className='font-semibold text-white'>Fast, reliable, and available anywhere in Bangladesh.</span>
+        </p>
+        {/* CTA Buttons */}
+        <div className="flex gap-4 mb-8 z-10">
+          <a href="tel:2351332511" className="bg-[#233a7a] hover:bg-[#1a2d5c] text-white px-6 py-3 rounded-full font-semibold shadow transition flex items-center gap-2"><span>📞</span> Call: (235) 133-2511</a>
+          <a href="#quote" className="bg-[#2ee6b6] hover:bg-[#1fd1a3] text-[#0a3a5c] px-6 py-3 rounded-full font-semibold shadow transition">Get an Online Quote</a>
         </div>
-        {/* Category Tabs Floating Overlap - Desktop */}
-        <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 z-20 w-full max-w-5xl items-center" style={{ bottom: '-56px' }}>
-          <button onClick={() => scrollCategories(desktopCatRef, -1)} className="w-10 h-10 rounded-full bg-white shadow border border-gray-200 flex items-center justify-center mr-2 hover:bg-pink-100 transition-colors">
-            <svg className="w-6 h-6 text-pink-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-          <div ref={desktopCatRef} className={`flex items-center w-full bg-white rounded-2xl shadow-md px-4 py-6 gap-2 sm:gap-6 overflow-x-auto ${scrollbarHide}`} style={{ scrollBehavior: 'smooth' }}>
-            {categories.map((cat) => (
-              <div key={cat.id} className="flex flex-col items-center min-w-[120px] sm:min-w-[160px] mx-2">
-                <div className="w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center rounded-full bg-pink-50 mb-2 border-2 border-pink-100">
-                  <img src={cat.image} alt={cat.title} className="w-8 h-8 sm:w-10 sm:h-10 object-contain" />
-                </div>
-                <span className="text-base sm:text-lg font-semibold text-gray-800 text-center whitespace-nowrap truncate max-w-[100px] sm:max-w-[140px]">{cat.title}</span>
+        {/* Curved white section at the bottom */}
+        <svg className="absolute bottom-0 left-0 w-full" viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="#fff" d="M0,80 C480,160 960,0 1440,80 L1440,120 L0,120 Z"/></svg>
+      </section>
+
+      {/* Step Section - Horizontal Row Layout */}
+      <section className="bg-white w-full py-20 px-4">
+        <div className="max-w-5xl mx-auto text-center mb-12">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">We're With You Every Step of The Way</h2>
+          <p className="text-gray-500 max-w-2xl mx-auto">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem.</p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 max-w-6xl mx-auto">
+          {[
+            { title: 'PrePlanning', icon: '📝', desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut labore et dolore magna aliqua.' },
+            { title: 'Arrangements', icon: '✅', desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut labore et dolore magna aliqua.' },
+            { title: 'Burial & Cremation', icon: '⚰️', desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut labore et dolore magna aliqua.' },
+            { title: 'Funeral Services', icon: '🕊️', desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut labore et dolore magna aliqua.' },
+            { title: 'Grief Support', icon: '💖', desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut labore et dolore magna aliqua.' },
+          ].map((step) => (
+            <div key={step.title} className="flex flex-col items-center text-center">
+              <div className="w-16 h-16 flex items-center justify-center rounded-full bg-gray-50 shadow-inner mb-4">
+                <span className="text-3xl text-gray-400">{step.icon}</span>
+              </div>
+              <h3 className="font-bold text-lg mb-2 text-gray-900">{step.title}</h3>
+              <p className="text-gray-500 mb-4 text-sm">{step.desc}</p>
+              <button className="bg-gray-100 hover:bg-gray-200 text-[#233a7a] px-5 py-2 rounded-full font-semibold text-sm transition shadow-sm">Learn More</button>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* For Your Home Section */}
+      <section className="bg-white py-12">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900">For Your Home</h2>
+            <a href="/services" className="text-pink-600 font-semibold flex items-center gap-1 hover:underline text-base md:text-lg">View All <span>&#8250;</span></a>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            {servicesData.forYourHome.map((item, idx) => (
+              <div key={item.name + idx} className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow flex flex-col items-center p-3 border border-gray-100">
+                <img src={item.image} alt={item.name} className="w-full h-36 object-cover rounded-lg mb-3" />
+                <span className="text-center text-gray-900 font-bold text-base mb-1">{item.name}</span>
               </div>
             ))}
           </div>
-          <button onClick={() => scrollCategories(desktopCatRef, 1)} className="w-10 h-10 rounded-full bg-white shadow border border-gray-200 flex items-center justify-center ml-2 hover:bg-pink-100 transition-colors">
-            <svg className="w-6 h-6 text-pink-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
         </div>
-        {/* Mobile: static below hero */}
       </section>
-      {/* Mobile Category Tabs */}
-      <div className="block md:hidden w-full px-2 mt-4">
-        <div className="flex items-center w-full bg-white rounded-2xl shadow-md px-2 py-4 gap-2 overflow-x-auto scrollbar-hide" ref={mobileCatRef} style={{ scrollBehavior: 'smooth' }}>
-          <button onClick={() => scrollCategories(mobileCatRef, -1)} className="w-8 h-8 rounded-full bg-white shadow border border-gray-200 flex items-center justify-center mr-1 hover:bg-pink-100 transition-colors">
-            <svg className="w-5 h-5 text-pink-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-          {categories.map((cat) => (
-            <div key={cat.id} className="flex flex-col items-center min-w-[90px] mx-1">
-              <div className="w-10 h-10 flex items-center justify-center rounded-full bg-pink-50 mb-1 border-2 border-pink-100">
-                <img src={cat.image} alt={cat.title} className="w-6 h-6 object-contain" />
+
+      {/* Trending Section */}
+      <section className="bg-white py-12">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Trending</h2>
+            <a href="/services" className="text-pink-600 font-semibold flex items-center gap-1 hover:underline text-base md:text-lg">View All <span>&#8250;</span></a>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {servicesData.recommended.map((item, idx) => (
+              <div key={item.name + idx} className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow flex flex-col items-center p-3 border border-gray-100">
+                <img src={item.image} alt={item.name} className="w-full h-36 object-cover rounded-lg mb-3" />
+                <span className="text-center text-gray-900 font-bold text-base mb-1">{item.name}</span>
               </div>
-              <span className="text-xs font-semibold text-gray-800 text-center whitespace-nowrap truncate max-w-[60px]">{cat.title}</span>
-            </div>
-          ))}
-          <button onClick={() => scrollCategories(mobileCatRef, 1)} className="w-8 h-8 rounded-full bg-white shadow border border-gray-200 flex items-center justify-center ml-1 hover:bg-pink-100 transition-colors">
-            <svg className="w-5 h-5 text-pink-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      {/* EMI/Promo Banner */}
-      <div className="flex items-center justify-center gap-3 bg-gradient-to-r from-orange-200 via-orange-100 to-yellow-100 text-orange-900 py-3 px-4 rounded-2xl shadow-md max-w-xl mx-auto my-8 mt-20">
-        <svg className="w-7 h-7 text-orange-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-          <rect x="2" y="7" width="20" height="10" rx="2" fill="#FDBA74" />
-          <rect x="6" y="11" width="4" height="2" rx="1" fill="#F59E42" />
-          <rect x="12" y="11" width="6" height="2" rx="1" fill="#F59E42" />
-        </svg>
-        <span className="font-semibold text-base sm:text-lg">
-          <span className="font-bold">EMI Available</span> &mdash; Buy now, pay later in installments
-        </span>
-      </div>
-
-      {/* For Your Home */}
-      <div className="max-w-7xl mx-auto px-4">
-        <SectionCards title="For Your Home" data={servicesData.forYourHome} viewAll />
-        <SectionCards title="Recommended" data={servicesData.recommended} viewAll />
-        <SectionCards title="Trending" data={servicesData.trending} viewAll />
-      </div>
-
-      {/* Why Choose Us */}
-      <section className="bg-white py-12 mt-12 rounded-xl shadow-md">
-        <div className="max-w-7xl mx-auto px-4">
-          <h3 className="text-2xl font-bold mb-6 text-gray-800">Because we care about your safety..</h3>
-          <div className="grid grid-cols-2 xs:grid-cols-4 gap-6 mb-8">
-            <div className="flex flex-col items-center">
-              <span className="text-4xl mb-2">😷</span>
-              <span className="font-medium text-gray-700">Ensuring Masks</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <span className="text-4xl mb-2">⏰</span>
-              <span className="font-medium text-gray-700">24/7 Support</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <span className="text-4xl mb-2">🧴</span>
-              <span className="font-medium text-gray-700">Sanitizing Hands & Equipment</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <span className="text-4xl mb-2">🧤</span>
-              <span className="font-medium text-gray-700">Ensuring Gloves</span>
-            </div>
-          </div>
-          <div className="flex justify-center gap-4 flex-wrap">
-            <img src="https://images.unsplash.com/photo-1588776814546-ec7e5b1c7b7b?auto=format&fit=crop&w=400&q=80" alt="Safety" className="w-40 h-32 object-cover rounded-lg" />
-            <img src="https://images.unsplash.com/photo-1581093588401-22b8d33c1e66?auto=format&fit=crop&w=400&q=80" alt="Safety" className="w-40 h-32 object-cover rounded-lg" />
-            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" alt="Safety" className="w-40 h-32 object-cover rounded-lg" />
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="py-12 bg-white">
-        <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-          <div>
-            <div className="text-3xl font-bold text-pink-600 mb-2">15,000 +</div>
-            <div className="text-gray-700">Service Providers</div>
-          </div>
-          <div>
-            <div className="text-3xl font-bold text-pink-600 mb-2">2,00,000 +</div>
-            <div className="text-gray-700">Order Served</div>
-          </div>
-          <div>
-            <div className="text-3xl font-bold text-pink-600 mb-2">1,00,000 +</div>
-            <div className="text-gray-700">5 Star Received</div>
-          </div>
-        </div>
-      </section>
-
-      {/* How it works */}
-      <section className="py-12 bg-white rounded-xl shadow-md mt-12">
-        <div className="max-w-4xl mx-auto px-4">
-          <h3 className="text-2xl font-bold mb-6 text-gray-800">Easiest way to get a service</h3>
-          <div className="flex flex-col md:flex-row items-center gap-8">
-            <button className="bg-pink-100 text-pink-600 rounded-full w-20 h-20 flex items-center justify-center text-3xl mb-4 md:mb-0">
-              <span>&#9658;</span>
-            </button>
-            <ol className="flex-1 space-y-4">
-              <li><span className="font-bold text-pink-600 mr-2">1</span>Select the Service</li>
-              <li><span className="font-bold text-pink-600 mr-2">2</span>Pick your schedule</li>
-              <li><span className="font-bold text-pink-600 mr-2">3</span>Place Your Order & Relax</li>
-            </ol>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="py-12 bg-white rounded-xl shadow-md mt-12">
-        <div className="max-w-4xl mx-auto px-4">
-          <h3 className="text-2xl font-bold mb-6 text-gray-800">Real Happy Customers, Real Stories</h3>
-          <div className="flex flex-col md:flex-row gap-8 items-center">
-            <div className="flex-1 bg-white p-6 rounded-xl shadow-md">
-              <p className="italic text-gray-700 mb-4">"Such service platforms are available in other countries. I've personally used these when I was abroad. I'm very pleased that such a portal is available here in Bangladesh as well. Thank you Sheba.xyz."</p>
-              <div className="font-bold text-pink-600">Zabeen Yusuf Nur</div>
-              <div className="text-gray-500 text-sm">IT Consultant, Australia</div>
+      {/* How It Works Section */}
+      <section className="bg-white py-16">
+        <div className="max-w-5xl mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-[#233a7a]">How Fantastic Services works</h2>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
+            {/* Step 1 */}
+            <div className="flex flex-col items-center">
+              <span className="text-5xl mb-4">💰</span>
+              <div className="text-2xl font-extrabold text-gray-300 mb-2">1.<span className="text-gray-700 font-bold ml-2">Show you reasonable price</span></div>
+              <p className="text-gray-600">Just specify a few details, pick the date and time, and we'll show you the best price for your needs.</p>
             </div>
-            <div className="flex-1 flex justify-center">
-              <button className="bg-pink-100 text-pink-600 rounded-full w-20 h-20 flex items-center justify-center text-3xl">
-                <span>&#9658;</span>
+            {/* Step 2 */}
+            <div className="flex flex-col items-center">
+              <span className="text-5xl mb-4">📍</span>
+              <div className="text-2xl font-extrabold text-gray-300 mb-2">2.<span className="text-gray-700 font-bold ml-2">Search your local area</span></div>
+              <p className="text-gray-600">Find available services and professionals in your local area quickly and easily.</p>
+            </div>
+            {/* Step 3 */}
+            <div className="flex flex-col items-center">
+              <span className="text-5xl mb-4">🤝</span>
+              <div className="text-2xl font-extrabold text-gray-300 mb-2">3.<span className="text-gray-700 font-bold ml-2">Contact with the verified providers</span></div>
+              <p className="text-gray-600">Connect and communicate directly with verified, trusted service providers.</p>
+            </div>
+            {/* Step 4 */}
+            <div className="flex flex-col items-center">
+              <span className="text-5xl mb-4">🚀</span>
+              <div className="text-2xl font-extrabold text-gray-300 mb-2">4.<span className="text-gray-700 font-bold ml-2">Setup and market your business</span></div>
+              <p className="text-gray-600">Get help setting up and marketing your business for maximum reach and success.</p>
+            </div>
+          </div>
+          <button className="bg-pink-600 hover:bg-pink-700 text-white font-bold px-8 py-3 rounded-md text-lg shadow transition">Book a service</button>
+        </div>
+      </section>
+
+      {/* Franchise Business Section */}
+      <section className="bg-white py-16">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12 px-4">
+          {/* Left: Text and CTA */}
+          <div className="flex-1">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#233a7a]">Start your own franchise business<br />with Fantastic Services</h2>
+            <p className="text-gray-600 mb-6 max-w-xl">Develop your own successful business by investing in a proven franchise model that takes all risks out and provides full support. A business of your own but not on your own.</p>
+            <button className="bg-pink-600 hover:bg-pink-700 text-white font-bold px-6 py-3 rounded-md text-lg shadow transition">Become your own boss</button>
+          </div>
+          {/* Right: Image Slider with border effect */}
+          <div className="flex-1 flex flex-col items-center justify-center">
+            <div className="relative w-full max-w-md">
+              <img
+                src={franchiseImages[franchiseCurrent]}
+                alt="Franchise Slide"
+                className="rounded-lg shadow-lg object-cover w-full h-72 md:h-80"
+                style={{ clipPath: 'polygon(0 0, 100% 0, 95% 100%, 5% 100%)' }}
+              />
+              {/* Left Arrow */}
+              <button
+                onClick={() => setFranchiseCurrent((franchiseCurrent - 1 + franchiseImages.length) % franchiseImages.length)}
+                className="absolute left-2 top-1/2 -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 text-[#233a7a] rounded-full p-2 shadow transition"
+                aria-label="Previous"
+                style={{ zIndex: 2 }}
+              >
+                <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+              </button>
+              {/* Right Arrow */}
+              <button
+                onClick={() => setFranchiseCurrent((franchiseCurrent + 1) % franchiseImages.length)}
+                className="absolute right-2 top-1/2 -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 text-[#233a7a] rounded-full p-2 shadow transition"
+                aria-label="Next"
+                style={{ zIndex: 2 }}
+              >
+                <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
               </button>
             </div>
+            {/* Navigation Dots */}
+            <div className="flex justify-center mt-4 gap-2">
+              {franchiseImages.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setFranchiseCurrent(idx)}
+                  className={`w-3 h-3 rounded-full ${franchiseCurrent === idx ? 'bg-pink-600' : 'bg-gray-300'} transition`}
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* App Download & Contact */}
-      <section className="py-12 bg-white rounded-xl shadow-md mt-12">
-        <div className="max-w-2xl mx-auto px-4 text-center">
-          <h3 className="text-2xl font-bold mb-4 text-gray-800">Any Service, Any Time, Anywhere.</h3>
-          <p className="mb-6 text-gray-600">Give us your mobile number. You'll get an SMS with the app download link.</p>
-          <div className="flex flex-col xs:flex-row gap-2 justify-center mb-6">
-            <input type="text" placeholder="Type your mobile number" className="flex-1 px-4 py-2 rounded-md border border-gray-300 focus:outline-none" />
-            <button className="bg-pink-600 text-white px-6 py-2 rounded-md font-semibold">Get the app</button>
+      {/* Testimonial Section */}
+      <section className="bg-white py-16">
+        <div className="max-w-5xl mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 text-[#233a7a]">What clients are saying...</h2>
+          <div className="flex flex-col items-center mb-10">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="font-semibold text-gray-700">Excellent</span>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Trustpilot_Logo_2018.svg" alt="Trustpilot" className="h-6" />
+              <span className="bg-[#00b67a] text-white font-bold px-2 rounded ml-1">★★★★★</span>
+              <span className="text-gray-600 ml-2">over 40,000 reviews on</span>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Trustpilot_Logo_2018.svg" alt="Trustpilot" className="h-5 ml-1" />
+            </div>
           </div>
-          <div className="flex justify-center gap-4 mt-4">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" className="h-10" />
-            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store" className="h-10" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {/* Testimonial 1 */}
+            <div className="flex flex-col items-center text-center">
+              <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Andrew Thorburn" className="w-20 h-20 rounded-full object-cover mb-4 border-4 border-white shadow" />
+              <h3 className="font-bold text-lg mb-2 text-gray-900">Amazing service, <br />above and beyond</h3>
+              <p className="text-gray-600 mb-4">I used them for an end of tenancy clean, and they did a fantastic job. It turned out to be bigger than expected, but they remained professional, and bent over backwards to make sure I got what I wante ...</p>
+              <a href="#" className="text-[#009fe3] font-bold mb-2">Read more</a>
+              <div className="font-bold text-gray-800 mt-2">Andrew Thorburn</div>
+              <div className="flex justify-center mt-2">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/62/Trustpilot_ratings_5star.png" alt="5 stars" className="h-6" />
+              </div>
+            </div>
+            {/* Testimonial 2 */}
+            <div className="flex flex-col items-center text-center">
+              <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Jasmine Pengelly" className="w-20 h-20 rounded-full object-cover mb-4 border-4 border-white shadow" />
+              <h3 className="font-bold text-lg mb-2 text-gray-900">Far exceeded my<br />expectations</h3>
+              <p className="text-gray-600 mb-4">Far exceeded my expectations - my gardeners were professional, friendly and found time to do my front garden as well as my back! I could not be more impressed with how they handled the job. I will cer ...</p>
+              <a href="#" className="text-[#009fe3] font-bold mb-2">Read more</a>
+              <div className="font-bold text-gray-800 mt-2">Jasmine Pengelly</div>
+              <div className="flex justify-center mt-2">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/62/Trustpilot_ratings_5star.png" alt="5 stars" className="h-6" />
+              </div>
+            </div>
+            {/* Testimonial 3 */}
+            <div className="flex flex-col items-center text-center">
+              <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="Diana Farragher" className="w-20 h-20 rounded-full object-cover mb-4 border-4 border-white shadow" />
+              <h3 className="font-bold text-lg mb-2 text-gray-900">Service with a smile</h3>
+              <p className="text-gray-600 mb-4">Punctuality Phone call On arrival Cheerful welcome Very helpful and they did a very thorough job My carpets are cleaner than I thought possible so job exceeded expectations Thank You</p>
+              <a href="#" className="text-[#009fe3] font-bold mb-2">Read more</a>
+              <div className="font-bold text-gray-800 mt-2">Diana Farragher</div>
+              <div className="flex justify-center mt-2">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/62/Trustpilot_ratings_5star.png" alt="5 stars" className="h-6" />
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Request a Service */}
-      <section className="py-8 bg-white border-t">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <p className="mb-4 text-gray-700">Can't find your desired service? Let us know 24/7 in 16516.</p>
-          <button className="bg-pink-600 text-white px-6 py-2 rounded-md font-semibold mr-2">Request a service</button>
-          <span className="text-pink-600 font-bold">16516</span>
+      {/* Service Locations Section (Bangladesh) */}
+      <section className="bg-white py-16">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12 px-4">
+          {/* Left: Text and Cities */}
+          <div className="flex-1">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#233a7a]">Always at your service, right where you are</h2>
+            <p className="text-gray-600 mb-6 max-w-xl">We won't let your cleaning and maintenance problems get to you. Besides providing quality home services in Bangladesh, our skilled pros can also tidy up your garden or clean your home or office anywhere in the country. Here are some of the main locations we serve:</p>
+            <div className="grid grid-cols-2 gap-x-10 gap-y-2 text-[#1565c0] font-medium text-lg">
+              <span>Dhaka</span>
+              <span>Chittagong</span>
+              <span>Khulna</span>
+              <span>Rajshahi</span>
+              <span>Sylhet</span>
+              <span>Barisal</span>
+              <span>Rangpur</span>
+              <span>Mymensingh</span>
+            </div>
+          </div>
+          {/* Right: Google Map */}
+          <div className="flex-1 w-full h-80 md:h-96 rounded-xl shadow-lg overflow-hidden">
+            <iframe
+              title="Bangladesh Service Area"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              loading="lazy"
+              allowFullScreen
+              referrerPolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3689401.073964019!2d88.011876!3d23.685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x37543f2916e1e7b1%3A0x4b6c1b1b1b1b1b1b!2sBangladesh!5e0!3m2!1sen!2sbd!4v1680000000000!5m2!1sen!2sbd"
+            ></iframe>
+          </div>
         </div>
       </section>
     </div>
