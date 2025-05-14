@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import logo from '../assets/logo/logo3.png';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -11,8 +12,13 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           <div className="flex-shrink-0 flex items-center">
-            <Link to="/" className="text-2xl font-extrabold bg-gradient-to-r from-blue-500 via-pink-500 to-purple-500 bg-clip-text text-transparent tracking-tight drop-shadow-lg">
-              Service365
+            <Link to="/" className="flex items-center">
+              <img 
+                src={logo} 
+                alt="Service365 Logo" 
+                className="h-20 w-20 object-contain"
+                style={{ maxHeight: '80px' }}
+              />
             </Link>
           </div>
 
